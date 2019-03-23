@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 @Entity
 @Data
-public class PatientRewiev {
+public class PatientReview {
 
     @Id
     @GeneratedValue
