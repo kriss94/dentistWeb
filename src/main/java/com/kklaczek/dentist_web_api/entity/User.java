@@ -1,21 +1,27 @@
 package com.kklaczek.dentist_web_api.entity;
 
+import com.kklaczek.dentist_web_api.entity.type.Role;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
+
 
 @Entity
 @Data
-public class DentalOffice {
+public class User {
+
     @Id
     @GeneratedValue
     private Long id;
 
+    private String login;
+    private String password;
+    private LocalDateTime creationDate;
     private String name;
-
-    @OneToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "information_id")
-    private Information information;
+    private String surname;
+    private Role role;
+    private String eMail;
 
     @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "address_id")
