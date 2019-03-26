@@ -19,17 +19,17 @@ public class AddressRestController {
         return new ResponseEntity<>(addressService.save(addressDto), HttpStatus.CREATED);
     }
 
-    @GetMapping("/find/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<AddressDto> findById(@PathVariable Long id){
         return new ResponseEntity<>(addressService.findById(id), HttpStatus.OK);
     }
 
-    @PutMapping("/edit/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<AddressDto> edit(@PathVariable Long id, @RequestBody AddressDto addressDto){
         return new ResponseEntity<>(addressService.edit(id, addressDto), HttpStatus.OK);
     }
 
-    @DeleteMapping("delete/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<AddressDto> delete(@PathVariable Long id){
         return new ResponseEntity<>(addressService.delete(id), HttpStatus.OK);
     }
