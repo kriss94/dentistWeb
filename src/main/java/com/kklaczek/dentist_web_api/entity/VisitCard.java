@@ -1,16 +1,19 @@
 package com.kklaczek.dentist_web_api.entity;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
-@Entity
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+
+@Entity
+@Table(name = "visit_cards")
 public class VisitCard {
 
     @Id
@@ -25,13 +28,18 @@ public class VisitCard {
     @JoinTable(name = "prescriptions", joinColumns = @JoinColumn(name = "visitCard_id", referencedColumnName = "id"))
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
+    @Column(name = "prescription")
     private List<String> prescriptions;
 
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "patient_id")
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     private Patient patient;
 
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "dentist_id")
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     private Dentist dentist;
 }
