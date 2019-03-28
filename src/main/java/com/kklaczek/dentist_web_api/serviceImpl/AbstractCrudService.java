@@ -2,6 +2,7 @@ package com.kklaczek.dentist_web_api.serviceImpl;
 
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
@@ -11,8 +12,18 @@ import java.lang.reflect.ParameterizedType;
 @RequiredArgsConstructor
 public abstract class AbstractCrudService<T, U> {
 
-    private final JpaRepository<T, Long> jpaRepository;
-    private final ModelMapper modelMapper;
+    private JpaRepository<T, Long> jpaRepository;
+    private ModelMapper modelMapper;
+
+    @Autowired
+    public void setJpaRepository(JpaRepository<T, Long> jpaRepository){
+        this.jpaRepository = jpaRepository;
+    }
+
+    @Autowired
+    public void setModelMapper(ModelMapper modelMapper){
+        this.modelMapper = modelMapper;
+    }
 
 
     private Class<T> typeT = (Class<T>) ((ParameterizedType)getClass().getGenericSuperclass()).getActualTypeArguments()[0];
