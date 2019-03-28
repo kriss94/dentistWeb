@@ -1,13 +1,17 @@
 package com.kklaczek.dentist_web_api.entity;
 
-import lombok.Data;
+import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Set;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 
 @Entity
-@Data
+@Table(name = "addresses")
 public class Address {
 
     @Id
@@ -18,4 +22,14 @@ public class Address {
     private String postCode;
     private String street;
     private String houseNumber;
+
+    @OneToMany(mappedBy = "address", fetch = FetchType.EAGER)
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    private Set<Patient> patients;
+
+    @OneToMany(mappedBy = "address", fetch = FetchType.EAGER)
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    private Set<DentalOffice> dentalOffices;
 }
