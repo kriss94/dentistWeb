@@ -7,6 +7,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 import java.lang.reflect.ParameterizedType;
+import java.util.List;
+import java.util.stream.Collectors;
 
 
 @RequiredArgsConstructor
@@ -39,9 +41,8 @@ public abstract class AbstractCrudService<T, U> {
         return modelMapper.map(t, typeU);
     }
 
-    public U edit(Long id, U u) {
-        T t = jpaRepository.findById(id).orElseThrow(NullPointerException::new);
-        t = modelMapper.map(u, typeT);
+    public U edit(U u) {
+        T t = modelMapper.map(u, typeT);
         return modelMapper.map(jpaRepository.save(t),typeU);
     }
 
@@ -49,6 +50,10 @@ public abstract class AbstractCrudService<T, U> {
         U u = modelMapper.map(jpaRepository.findById(id).orElseThrow(NullPointerException::new), typeU);
         jpaRepository.deleteById(id);
         return u;
+    }
+
+    public List<U> findAll(){
+        return jpaRepository.findAll().stream().map(t -> modelMapper.map(t, typeU)).collect(Collectors.toList());
     }
 
 }

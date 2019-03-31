@@ -8,6 +8,8 @@ import org.springframework.http.ResponseEntity;
 
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 public abstract class AbstractCrudRestController<T, U> {
 
 
@@ -28,13 +30,18 @@ public abstract class AbstractCrudRestController<T, U> {
         return new ResponseEntity<>(abstractCrudService.findById(id), HttpStatus.OK);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<U> edit(@PathVariable Long id, @RequestBody U u){
-        return new ResponseEntity<>(abstractCrudService.edit(id, u), HttpStatus.OK);
+    @PutMapping("/edit}")
+    public ResponseEntity<U> edit(@RequestBody U u){
+        return new ResponseEntity<>(abstractCrudService.edit(u), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<U> delete(@PathVariable Long id){
         return new ResponseEntity<>(abstractCrudService.delete(id), HttpStatus.OK);
+    }
+
+    @GetMapping("/findAll")
+    public  ResponseEntity<List<U>> findAll(){
+        return new ResponseEntity<>(abstractCrudService.findAll(), HttpStatus.OK);
     }
 }
