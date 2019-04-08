@@ -5,7 +5,6 @@ import com.kklaczek.dentist_web_api.entity.Category;
 import org.springframework.stereotype.Service;
 
 @Service
-
 public class CategoryServiceImpl extends AbstractCrudService<Category, CategoryDto> {
 
 }
