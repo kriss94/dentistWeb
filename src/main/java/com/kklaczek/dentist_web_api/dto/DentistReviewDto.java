@@ -13,5 +13,5 @@ import lombok.NoArgsConstructor;
 public class DentistReviewDto {
 
     private Long id;
-    private Dentist dentist;
+    private DentistDto dentist;
 }

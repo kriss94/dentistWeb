@@ -20,5 +20,5 @@ public class ServiceDto {
     private String description;
     private BigDecimal price;
     private Contraindications contraindications;
-    private Category category;
+    private CategoryDto category;
 }

@@ -23,5 +23,5 @@ public class UserDto {
     private String surname;
     private Role role;
     private String eMail;
-    private Address address;
+    private AddressDto address;
 }

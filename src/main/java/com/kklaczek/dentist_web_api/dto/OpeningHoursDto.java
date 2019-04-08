@@ -19,5 +19,5 @@ public class OpeningHoursDto {
     private DayOfWeek dayOfWeek;
     private LocalTime openingTime;
     private LocalTime closingTime;
-    private Information information;
+    private InformationDto information;
 }

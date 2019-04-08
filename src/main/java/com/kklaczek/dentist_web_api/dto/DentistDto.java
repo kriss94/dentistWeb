@@ -16,5 +16,5 @@ public class DentistDto {
     private Long id;
     private String description;
     private String degree;
-    private DentalOffice dentalOffice;
+    private DentalOfficeDto dentalOffice;
 }

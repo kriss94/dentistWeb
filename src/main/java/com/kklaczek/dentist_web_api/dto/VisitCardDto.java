@@ -19,6 +19,6 @@ public class VisitCardDto {
     private BigDecimal cost;
     private String description;
     private List<String> prescriptions;
-    private Patient patient;
-    private Dentist dentist;
+    private PatientDto patient;
+    private DentistDto dentist;
 }

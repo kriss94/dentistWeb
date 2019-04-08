@@ -16,6 +16,6 @@ public class DentalOfficeDto {
 
     private Long id;
     private String name;
-    private Information information;
-    private Address address;
+    private InformationDto information;
+    private AddressDto address;
 }

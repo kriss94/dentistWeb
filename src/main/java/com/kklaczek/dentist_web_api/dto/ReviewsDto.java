@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 public class ReviewsDto {
 
     private Long id;
-    private Float rate;
+    private Integer rate;
     private String description;
     private LocalDateTime time;
 }

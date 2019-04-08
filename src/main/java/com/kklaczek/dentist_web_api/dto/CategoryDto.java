@@ -14,5 +14,5 @@ public class CategoryDto {
     private Long id;
     private String name;
     private String description;
-    private DentalOffice dentalOffice;
+    private DentalOfficeDto dentalOffice;
 }
