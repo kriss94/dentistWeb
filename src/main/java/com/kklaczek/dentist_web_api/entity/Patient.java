@@ -1,11 +1,5 @@
 package com.kklaczek.dentist_web_api.entity;
 
-import javassist.runtime.Inner;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 import java.util.Objects;
 import java.util.Set;

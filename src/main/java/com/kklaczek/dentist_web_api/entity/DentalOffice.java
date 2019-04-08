@@ -12,7 +12,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "dental_offices")
-public class DentalOffice {
+public class DentalOffice implements Cloneable {
     @Id
     @GeneratedValue
     private Long id;
@@ -35,4 +35,10 @@ public class DentalOffice {
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
     private Set<Review> reviews;
+
+
+    public DentalOffice clone() throws CloneNotSupportedException{
+        DentalOffice clonDentalOffice = (DentalOffice) super.clone();
+        return clonDentalOffice;
+    }
 }

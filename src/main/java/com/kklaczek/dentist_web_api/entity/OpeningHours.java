@@ -1,6 +1,7 @@
 package com.kklaczek.dentist_web_api.entity;
 
 import lombok.Data;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.time.DayOfWeek;
@@ -20,5 +21,6 @@ public class OpeningHours {
 
     @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     @JoinColumn(name = "information_id")
+    @ToString.Exclude
     private Information information;
 }
