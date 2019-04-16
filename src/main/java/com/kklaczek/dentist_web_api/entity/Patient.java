@@ -1,5 +1,8 @@
 package com.kklaczek.dentist_web_api.entity;
 
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
 import javax.persistence.*;
 import java.util.Objects;
 import java.util.Set;
@@ -16,6 +19,19 @@ public class Patient extends User {
 
     @OneToMany(mappedBy = "patient")
     private Set<VisitCard> visitCards;
+
+    @OneToMany(mappedBy = "patient")
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    private Set<Review> reviews;
+
+    public Set<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(Set<Review> reviews) {
+        this.reviews = reviews;
+    }
 
     public Integer getPesel() {
         return pesel;

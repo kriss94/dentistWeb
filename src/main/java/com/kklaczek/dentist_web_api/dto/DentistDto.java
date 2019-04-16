@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Set;
+
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -17,4 +19,7 @@ public class DentistDto {
     private String description;
     private String degree;
     private DentalOfficeDto dentalOffice;
+    private Set<VisitCardDto> visitCardDtos;
+    private Set<ReviewsDto> reviewsDtos;
+
 }

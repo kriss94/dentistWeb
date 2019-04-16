@@ -1,5 +1,8 @@
 package com.kklaczek.dentist_web_api.entity;
 
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
 import javax.persistence.*;
 import java.util.Objects;
 import java.util.Set;
@@ -7,6 +10,8 @@ import java.util.Set;
 @Entity
 @Table(name = "dentists")
 public class Dentist extends User {
+
+
 
     private String description;
     private String degree;
@@ -17,6 +22,22 @@ public class Dentist extends User {
 
     @OneToMany(mappedBy = "patient")
     private Set<VisitCard> visitCards;
+
+    @OneToMany(mappedBy = "dentist")
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    private Set<Review> reviews;
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    private Set<String> specialties;
+
+    public Set<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(Set<Review> reviews) {
+        this.reviews = reviews;
+    }
 
     public String getDescription() {
         return description;
@@ -50,19 +71,30 @@ public class Dentist extends User {
         this.visitCards = visitCards;
     }
 
+    public Set<String> getSpecialties() {
+        return specialties;
+    }
+
+    public void setSpecialties(Set<String> specialties) {
+        this.specialties = specialties;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Dentist)) return false;
         if (!super.equals(o)) return false;
         Dentist dentist = (Dentist) o;
-        return Objects.equals(description, dentist.description) &&
-                Objects.equals(degree, dentist.degree);
+        return description.equals(dentist.description) &&
+                degree.equals(dentist.degree) &&
+                dentalOffice.equals(dentist.dentalOffice) &&
+                visitCards.equals(dentist.visitCards) &&
+                specialties.equals(dentist.specialties);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), description, degree);
+        return Objects.hash(super.hashCode(), description, degree, dentalOffice, visitCards, specialties);
     }
 
     @Override
@@ -70,6 +102,9 @@ public class Dentist extends User {
         return "Dentist{" +
                 "description='" + description + '\'' +
                 ", degree='" + degree + '\'' +
+                ", dentalOffice=" + dentalOffice +
+                ", visitCards=" + visitCards +
+                ", specialties=" + specialties +
                 "} " + super.toString();
     }
 }

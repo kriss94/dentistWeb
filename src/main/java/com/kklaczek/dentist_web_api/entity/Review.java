@@ -34,5 +34,11 @@ public class Review {
     @EqualsAndHashCode.Exclude
     private Patient patient;
 
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "dentist_id")
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    private Dentist dentist;
+
 
 }
